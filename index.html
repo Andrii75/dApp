@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bitcoinjs-lib-browser@5.1.7/bitcoinjs.min.js"
+        type="application/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.12.0/tsparticles.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <div class="page">
+        <div id="tsparticles"></div>
+        <ul class="navbar">
+            <li class="navItem" id="BTCSwitcher">BTC</li>
+            <li class="navItem active" id="ETHSwitcher">ETH</li>
+            <li class="navItem" id="ERC20Switcher">ERC20</li>
+            <li class="navItem" id="NFTSwitcher">NFT</li>
+        </ul>
+        <div class="content">
+            <div id="ethWrapper" class="wrapper">
+                <div class="balances">
+                    <div class="tokenName"><span id="currency">ETH</span></div>
+                    <div class="balanceItem">Balance:<span id="ethBalance"> </span></div>
+                </div>
+                <div class="accountInfo">
+                    <div class="accountLabel">Account</div>
+                    <div class="accountValue" id="ethAccount">0x0000000000000000000000000000000000000000</div>
+                </div>
+                <div class="sendToken">
+                    <div class="sendLabel">Send:</div>
+                    <div class="sendInput">
+                        <input type="text" id="ethSendTo" placeholder="Receiver">
+                        <input type="text" id="ethSendAmount" placeholder="Amount">
+                    </div>
+                    <button id="ethSendButton">Send</button>
+                </div>
+                <div id="loader" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+
+                <div id="transactionLinkContainer" class="transactionLink"></div>
+            </div>
+            <div id="ERC20Wrapper" class="wrapper">
+                <div class="balances">
+                    <div class="tokenName"><span id="ERC20Symbol">ETH</span></div>
+                    <div class="balanceItem">Balance:<span id="ERC20Balance"> </span></div>
+                </div>
+                <div class="accountInfo">
+                    <div class="accountLabel">Account</div>
+                    <div class="accountValue" id="ERC20Account">0x0000000000000000000000000000000000000000</div>
+                </div>
+                <div class="sendToken">
+                    <div class="sendLabel">Send:</div>
+                    <div class="sendInput">
+                        <input type="text" id="ERC20SendTo" placeholder="Receiver">
+                        <input type="text" id="ERC20SendAmount" placeholder="Amount">
+                    </div>
+                    <button id="ERC20SendButton">Send</button>
+                </div>
+                <div id="ERC20loader" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+                <div id="ERC20transactionLinkContainer" class="transactionLink"></div>
+            </div>
+            <div id="btcWrapper" class="wrapper">
+                <div class="balances">
+                    <div class="tokenName">Bitcoin</div>
+                    <div class="balanceItem">
+                        Balance: <span id="btcBalance">BTC</span>
+                    </div>
+                </div>
+                <div class="accountInfo">
+                    <div class="accountLabel">Account:</div>
+                    <div class="accountValue" id="btcAccount">0x00000</div>
+                </div>
+                <div class="sendToken">
+                    <div class="sendLabel">Send:</div>
+                    <div class="sendInput">
+                        <div class="feeCointainer">
+                            <label for="btcSendFee">Fee</label>
+                            <input type="number" id="btcSendFee" placeholder="Fee" value="0.0002">
+                        </div>
+                        <input type="text" id="btcSendTo" placeholder="Receiver">
+                        <input type="number" id="btcSendAmount" placeholder="Amount">
+                    </div>
+                    <button id="btcSendButton">Send</button>
+                    <div id="BTCtransactionLinkContainer" class="transactionLink"></div>
+                </div>
+            </div>
+            <div id="btcAuthWrapper" class="wrapper">
+                <div class="title">BTC Auth</div>
+                <div class="btcGenerateMnemonic">
+                    <div class="btcMnemonic">
+                        <div class="title"> Mnemonic Key:</div>
+                        <input disabled id="btcMnemonicField">
+                    </div>
+                    <div class="btcPrivateKey">
+                        <div class="title">Private Key:</div>
+                        <input id="btcPrivateKeyField">
+                    </div>
+                </div>
+                <button id="btcGenerateMnemonicButton">Generate Wallet</button>
+                <button id="btcAuthButton">Connect</button>
+            </div>
+            <div id="nftWrapper" class="wrapper">
+                <div class="container">
+                    <div id="nftList">
+                        <h2>Your NFTs</h2>
+
+                        <div class="imageGeneration">
+                            <label for="imagePrompt">Enter Image Description:</label>
+                            <input type="text" id="imagePrompt" placeholder="e.g. A white Siamese cat">
+                            <button id="generateImageButton">Generate Image</button>
+                            <img id="generatedImage" src="" alt="Generated Image" style="display:none;">
+                        </div>
+
+                        <button id="surpriseMeButton">Surprise Me!</button>
+
+                        <div class="convertToNFT">
+                            <button id="convertToNFTButton" disabled>Convert to NFT</button>
+                        </div>
+
+                        <div class="cidInfo">
+                            <span>CID: </span><span id="nftCID"></span>
+                        </div>
+
+                        <div id="nftsContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connectWrapper active"> <button id="connectButton">Connect MetaMask</button>
+                <button id="ConnectBTCButton">Connect BTC</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Your scripts -->
+    <script type="module" src="apidelle.mjs"></script>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="particles.js"></script>
+</body>
+
+</html>

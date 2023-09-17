@@ -1,0 +1,191 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Universal Styles */
+body, html {
+    font-family: 'Arial', sans-serif;
+    background: #d5e9e2;
+    background-image: linear-gradient(rgba(213, 233, 226, 0.5), rgba(213, 233, 226, 0.5)), url('ether-logo.png');
+    background-size: 800px 800px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #048a81;
+    overflow: scroll;
+}
+
+/* Navigation Styles */
+.navbar {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    list-style: none;
+    font-size: 20px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar li:hover {
+    color: #04bf9d;
+}
+
+/* Main Content Styles */
+.content {
+    position: relative;
+    display: flex;
+    height: calc(100% - 50px);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 2;
+}
+
+.wrapper {
+    display: none;
+    flex-direction: column;
+    padding: 20px 30px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    max-width: 600px;
+    align-items: center;
+}
+
+.wrapper.active {
+    display: flex;
+}
+
+/* Button Styles */
+button {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #048a81;
+    color: white;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #04bf9d;
+    transform: scale(1.05);
+}
+
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.balances, .accountInfo, .sendToken, .btcGenerateMnemonic, .imageGeneration, .cidInfo {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.convertToNFT {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.tokenName, .balanceItem, .accountLabel, .accountValue, .sendLabel, .feeCointainer, .title {
+    flex: 1;
+    padding: 10px;
+    background-color: #1A1F36;
+    color: #ffffff;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.sendInput, .btcMnemonic, .btcPrivateKey {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 5px;
+}
+
+#tsparticles {
+    z-index: 1;
+}
+
+/* NFT Wrapper Enhancements */
+#nftWrapper .container {
+    padding: 30px;
+    border-radius: 15px;
+}
+
+#nftList {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* Changed to stretch to align everything to the full width */
+    width: 100%;
+}
+
+#nftList h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #ffffff;
+    border-bottom: 2px solid #048a81;
+    padding-bottom: 10px;
+}
+
+.imageGeneration, .convertToNFT, .cidInfo {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.imageGeneration label, .imageGeneration input, .imageGeneration button,
+.convertToNFT button, #surpriseMeButton {
+    margin-bottom: 10px;
+}
+
+.cidInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nftsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    /* Adds consistent spacing between items */
+}
+
+.nftItem img {
+    max-width: 100%;
+    height: auto;
+}
