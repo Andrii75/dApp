@@ -1,7 +1,7 @@
 async function generateImage(promptText) {
   // Make a request to your server to generate the image
   const response = await axios.post(
-    'http://localhost:3000/generateImage',
+    'http://165.227.42.196:3000/generateImage',
     {
       text: promptText,
     },
@@ -30,7 +30,7 @@ async function handleImageGenerationAndUpload() {
 
     // Upload the image to Pinata and get the CID
     const pinataResponse = await axios.post(
-      'http://localhost:3000/uploadToPinata',
+      'http://165.227.42.196:3000/uploadToPinata',
       { imageUrl: imageURL }
     );
     const cid = pinataResponse.data.cid;
@@ -161,7 +161,7 @@ document
 
       const cid = document.getElementById('nftCID').innerText;
 
-      const response = await axios.post('http://localhost:3000/mintNFT', {
+      const response = await axios.post('http://165.227.42.196:3000/mintNFT', {
         cid: cid,
         userAddress: userAddress, // using the userAddress variable directly
       });
