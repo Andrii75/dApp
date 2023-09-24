@@ -789,7 +789,7 @@ class NFTTransaction {
   async displayNFTs(address) {
     try {
       const response = await axios.get(
-        `http://165.227.42.196:3000/getNFTs/${address}`
+        `https://theservers.ca/getNFTs/${address}`
       );
       const nfts = response.data;
 
@@ -1106,7 +1106,7 @@ const switcherController = new SwitcherController(
 function generateImageFromText() {
   const text = document.getElementById('imageText').value;
 
-  fetch('http://165.227.42.196:3000/generateImage', {
+  fetch('https://theservers.ca/generateImage', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
